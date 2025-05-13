@@ -21,24 +21,42 @@ document.addEventListener("DOMContentLoaded", () => {
         const spotsLeft = details.max_participants - details.participants.length;
 
         // Function to create a participants component
-        function createParticipantsList(participants) {
+        function createParticipantsComponent(participants) {
+          const container = document.createElement("div");
+          container.className = "participants-container";
+
           if (participants.length === 0) {
-            return '<p class="no-participants">No participants yet</p>';
+            const noParticipants = document.createElement("p");
+            noParticipants.className = "no-participants";
+            noParticipants.textContent = "No participants yet";
+            container.appendChild(noParticipants);
+          } else {
+            const list = document.createElement("ul");
+            list.className = "participants-list modern";
+
+            participants.forEach(participant => {
+              const listItem = document.createElement("li");
+              listItem.className = "participant-item";
+              listItem.textContent = participant;
+              list.appendChild(listItem);
+            });
+
+            container.appendChild(list);
           }
 
-          const listItems = participants.map(participant => `<li class="participant-item">${participant}</li>`).join('');
-          return `<ul class="participants-list modern">${listItems}</ul>`;
+          return container;
         }
 
-        // Update activityCard to use the participants component
         activityCard.innerHTML = `
           <h4>${name}</h4>
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
           <p><strong>Participants:</strong></p>
-          ${createParticipantsList(details.participants)}
         `;
+
+        const participantsComponent = createParticipantsComponent(details.participants);
+        activityCard.appendChild(participantsComponent);
 
         activitiesList.appendChild(activityCard);
 
