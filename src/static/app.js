@@ -25,21 +25,27 @@ document.addEventListener("DOMContentLoaded", () => {
           const container = document.createElement("div");
           container.className = "participants-container";
 
-          const list = document.createElement("ul");
-          list.className = "participants-list modern";
-
           if (participants.length === 0) {
             const noParticipants = document.createElement("p");
             noParticipants.className = "no-participants";
             noParticipants.textContent = "No participants yet";
             container.appendChild(noParticipants);
           } else {
+            const title = document.createElement("h5");
+            title.textContent = "Participants";
+            title.className = "participants-title";
+            container.appendChild(title);
+
+            const list = document.createElement("ul");
+            list.className = "participants-list modern";
+
             participants.forEach(participant => {
               const listItem = document.createElement("li");
               listItem.className = "participant-item";
               listItem.textContent = participant;
               list.appendChild(listItem);
             });
+
             container.appendChild(list);
           }
 
