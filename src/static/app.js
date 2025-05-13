@@ -36,17 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
             title.className = "participants-title";
             container.appendChild(title);
 
-            const list = document.createElement("ul");
-            list.className = "participants-list modern";
-
-            participants.forEach(participant => {
-              const listItem = document.createElement("li");
-              listItem.className = "participant-item";
-              listItem.textContent = participant;
-              list.appendChild(listItem);
-            });
-
-            container.appendChild(list);
+            const participantsText = document.createElement("p");
+            participantsText.className = "participants-text";
+            participantsText.textContent = participants.join(", ");
+            container.appendChild(participantsText);
           }
 
           return container;
