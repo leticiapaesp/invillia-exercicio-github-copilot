@@ -20,11 +20,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const spotsLeft = details.max_participants - details.participants.length;
 
+        // Function to create a participants component
+        function createParticipantsList(participants) {
+          if (participants.length === 0) {
+            return '<p class="no-participants">No participants yet</p>';
+          }
+
+          const listItems = participants.map(participant => `<li class="participant-item">${participant}</li>`).join('');
+          return `<ul class="participants-list modern">${listItems}</ul>`;
+        }
+
+        // Update activityCard to use the participants component
         activityCard.innerHTML = `
           <h4>${name}</h4>
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
+          <p><strong>Participants:</strong></p>
+          ${createParticipantsList(details.participants)}
         `;
 
         activitiesList.appendChild(activityCard);
