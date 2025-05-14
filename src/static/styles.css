@@ -136,6 +136,18 @@ button:hover {
   display: none;
 }
 
+ol {
+  padding-left: 20px;
+  margin-top: 10px;
+  list-style-type: decimal;
+}
+
+ol li {
+  margin-bottom: 5px;
+  color: #333;
+  font-size: 14px;
+}
+
 footer {
   text-align: center;
   margin-top: 30px;

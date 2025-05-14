@@ -20,41 +20,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const spotsLeft = details.max_participants - details.participants.length;
 
-        // Function to create a participants component
-        function createParticipantsComponent(participants) {
-          const container = document.createElement("div");
-          container.className = "participants-container";
-
-          if (participants.length === 0) {
-            const noParticipants = document.createElement("p");
-            noParticipants.className = "no-participants";
-            noParticipants.textContent = "No participants yet";
-            container.appendChild(noParticipants);
-          } else {
-            const title = document.createElement("h5");
-            title.textContent = "Participants";
-            title.className = "participants-title";
-            container.appendChild(title);
-
-            const participantsText = document.createElement("p");
-            participantsText.className = "participants-text";
-            participantsText.textContent = participants.join(", ");
-            container.appendChild(participantsText);
-          }
-
-          return container;
-        }
-
         activityCard.innerHTML = `
           <h4>${name}</h4>
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
           <p><strong>Participants:</strong></p>
+          <ol>
+            ${details.participants.length > 0 ? details.participants.map(participant => `<li>${participant}</li>`).join('') : '<li>No participants yet</li>'}
+          </ol>
         `;
-
-        const participantsComponent = createParticipantsComponent(details.participants);
-        activityCard.appendChild(participantsComponent);
 
         activitiesList.appendChild(activityCard);
 
