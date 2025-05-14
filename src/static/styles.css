@@ -140,12 +140,22 @@ ol {
   padding-left: 20px;
   margin-top: 10px;
   list-style-type: decimal;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 ol li {
   margin-bottom: 5px;
   color: #333;
   font-size: 14px;
+  padding: 5px;
+  border-bottom: 1px solid #eee;
+}
+
+ol li:last-child {
+  border-bottom: none;
 }
 
 footer {
